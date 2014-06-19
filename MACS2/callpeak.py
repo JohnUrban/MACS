@@ -204,6 +204,8 @@ def run( args ):
     info("#3 Call peaks...")
     if options.nolambda:
         info("# local lambda is disabled!")
+    if options.noglobal:
+        info("# global background lambda is disabled!")
 
     # decide options.tocontrol according to options.tolarge
     if control and options.PE_MODE:
