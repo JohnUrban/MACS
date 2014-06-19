@@ -76,6 +76,7 @@ class PeakDetect:
         
         self.nolambda = opt.nolambda
         self.noglobal = opt.noglobal
+        self.setglobal = opt.setglobal
 
         if slocal != None:
             self.sregion = slocal
@@ -96,6 +97,8 @@ class PeakDetect:
             self.info("#3 !!!! DYNAMIC LAMBDA IS DISABLED !!!!")
         if (self.noglobal):
             self.info("#3 !!!! GLOBAL BACKGROUND LAMBDA IS DISABLED !!!!")
+        if (self.setglobal):
+            self.info("#3 !!!! USER-SPECIFIED GLOBAL BACKGROUND LAMBDA IS ENABLED !!!!")
         #self.diag = opt.diag
         #self.save_score = opt.store_score
         #self.zwig_tr = opt.zwig_tr
@@ -184,7 +187,9 @@ class PeakDetect:
         ## Future: if --noglobal, set lambda_bg to value given instead (default is 0 or 1)
         ## For now: if --noglobal, set lambda_bg to 0 (or 1 if that is required min)
         if (self.noglobal):
-            lambda_bg = 0
+            lambda_bg = 1e-9
+        if self.setglobal != None:
+            lambda_bg = self.setglobal
         
         # prepare d_s for control data
         if self.sregion:

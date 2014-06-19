@@ -206,6 +206,8 @@ def run( args ):
         info("# local lambda is disabled!")
     if options.noglobal:
         info("# global background lambda is disabled!")
+    if options.setglobal:
+        info("# Using user-specified global background lambda!")
 
     # decide options.tocontrol according to options.tolarge
     if control and options.PE_MODE:
